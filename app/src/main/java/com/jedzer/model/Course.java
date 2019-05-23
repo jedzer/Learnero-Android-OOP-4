@@ -1,27 +1,49 @@
 package com.jedzer.model;
 
-public class Course {
-    private long id;
+import com.orm.SugarRecord;
+
+import java.io.Serializable;
+
+public class Course extends SugarRecord<Course> {
     private String title;
     private String description;
-    private int imageId;
-    private int[] lessonIds;
+    private String imageName;
+    private String backGroundColor;
+    private Unit unit;
 
-    public Course(long id, String title, String description, int imageId, int[] lessonIds) {
-        this.id = id;
+    public Course() {
+    }
+
+    public Course(String title, String description, String imageName, String backGroundColor, Unit unit) {
         this.title = title;
         this.description = description;
-        this.imageId = imageId;
-        this.lessonIds= lessonIds;
-
+        this.imageName = imageName;
+        this.backGroundColor = backGroundColor;
+        this.unit = unit;
     }
 
-    public long getId() {
-        return id;
+    public String getBackGroundColor() {
+        return backGroundColor;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setBackGroundColor(String backGroundColor) {
+        this.backGroundColor = backGroundColor;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 
     public String getTitle() {
@@ -40,19 +62,4 @@ public class Course {
         this.description = description;
     }
 
-    public int getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
-    }
-
-    public int[] getLessonIds() {
-        return lessonIds;
-    }
-
-    public void setLessonIds(int[] lessonIds) {
-        this.lessonIds = lessonIds;
-    }
 }

@@ -1,34 +1,31 @@
 package com.jedzer.model;
 
-public class Quiz {
-    private long id;
+import com.orm.SugarRecord;
+
+import java.io.Serializable;
+
+public class Quiz extends SugarRecord<Quiz> {
     private String title;
     private String text;
-    private int imageId;
-    private int lessonId;
+    private String imageName;
+    private Lesson lesson;
 
-    public Quiz(long id, String title, String text, int imageId, int lessonId) {
-        this.id = id;
+    public Quiz() {
+    }
+
+    public Quiz(String title, String text, String imageName, Lesson lesson) {
         this.title = title;
         this.text = text;
-        this.imageId = imageId;
-        this.lessonId = lessonId;
+        this.imageName = imageName;
+        this.lesson = lesson;
     }
 
-    public long getId() {
-        return id;
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public int getLessonId() {
-        return lessonId;
-    }
-
-    public void setLessonId(int lessonId) {
-        this.lessonId = lessonId;
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
 
     public String getTitle() {
@@ -47,11 +44,11 @@ public class Quiz {
         this.text = text;
     }
 
-    public int getImageId() {
-        return imageId;
+    public String getImageName() {
+        return imageName;
     }
 
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 }

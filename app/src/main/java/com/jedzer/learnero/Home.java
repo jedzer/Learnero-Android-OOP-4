@@ -10,12 +10,16 @@ import android.widget.ListView;
 
 import com.jedzer.adapters.CourseListAdapter;
 import com.jedzer.model.Course;
+import com.jedzer.model.Unit;
+
+import java.util.List;
 
 
 public class Home extends AppCompatActivity {
 
     ListView availableCoursesListView;
     BottomNavigationView bottomNavigationView;
+    public static final String COURSE_EXTRA = "COURSE_EXTRA";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -61,13 +65,7 @@ public class Home extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        Course[] courses = {
-                new Course(12, "lol", "descr", -1, null),
-                new Course(12, "lol1", "descr", -1, null),
-                new Course(12, "lol2", "descr", -1, null),
-                new Course(12, "lol3", "descr", -1, null),
-                new Course(12, "lol4", "descr", -1, null)
-        };
+        List<Course> courses = Course.listAll(Course.class);
 
         CourseListAdapter adapter = new CourseListAdapter(this, courses);
         availableCoursesListView.setAdapter(adapter);

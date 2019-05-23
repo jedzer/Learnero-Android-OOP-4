@@ -1,22 +1,17 @@
 package com.jedzer.model;
 
+import com.orm.SugarRecord;
+
 import java.util.Date;
 
-public class User {
-    private long id;
+public class User extends SugarRecord<User> {
     private String nickname;
     private String email;
     private String password;
     private String registrationDate;
     private boolean isPremium;
 
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public User() {
     }
 
     public String getNickname() {
@@ -59,8 +54,7 @@ public class User {
         isPremium = premium;
     }
 
-    public User(long id, String nickname, String email, String password, String registrationDate, boolean isPremium) {
-        this.id = id;
+    public User(String nickname, String email, String password, String registrationDate, boolean isPremium) {
         this.nickname = nickname;
         this.email = email;
         this.password = password;

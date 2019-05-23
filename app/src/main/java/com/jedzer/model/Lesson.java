@@ -1,36 +1,31 @@
 package com.jedzer.model;
 
-public class Lesson {
-    private int id;
-    private int courseId;
+import com.orm.SugarRecord;
+
+import java.io.Serializable;
+
+public class Lesson extends SugarRecord<Lesson> {
     private String title;
     private String description;
-    private int imageId;
-    private int[] quizIds;
+    private String imageName;
+    private Course course;
 
-    public Lesson(int id, String title, String description, int imageId, int courseId, int[] quizIds) {
-        this.id = id;
+    public Lesson() {
+    }
+
+    public Lesson(String title, String description, String imageName, Course course) {
         this.title = title;
         this.description = description;
-        this.imageId = imageId;
-        this.courseId = courseId;
-        this.quizIds = quizIds;
+        this.imageName = imageName;
+        this.course = course;
     }
 
-    public int getId() {
-        return id;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public String getTitle() {
@@ -49,19 +44,11 @@ public class Lesson {
         this.description = description;
     }
 
-    public int[] getQuizIds() {
-        return quizIds;
+    public String getImageName() {
+        return imageName;
     }
 
-    public void setQuizIds(int[] quizIds) {
-        this.quizIds = quizIds;
-    }
-
-    public int getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 }
