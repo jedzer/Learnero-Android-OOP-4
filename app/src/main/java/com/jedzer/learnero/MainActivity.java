@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.jedzer.misc.Settings;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
@@ -54,6 +56,22 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.navigation_dashboard);
         bottomNavigationView .setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        boolean isLoggedIn = Settings.isLoggedIn();
+        if (!isLoggedIn)
+        {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!Settings.isLoggedIn())
+        {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
 }

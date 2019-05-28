@@ -6,6 +6,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.jedzer.adapters.CourseListAdapter;
@@ -20,6 +22,7 @@ public class Home extends AppCompatActivity {
     ListView availableCoursesListView;
     BottomNavigationView bottomNavigationView;
     public static final String COURSE_EXTRA = "COURSE_EXTRA";
+    public static final String COURSE_DETAIL_EXTRA = "COURSE_DETAIL_EXTRA";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -54,6 +57,8 @@ public class Home extends AppCompatActivity {
         }
     };
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +74,16 @@ public class Home extends AppCompatActivity {
 
         CourseListAdapter adapter = new CourseListAdapter(this, courses);
         availableCoursesListView.setAdapter(adapter);
+
+        availableCoursesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Course course = (Course) availableCoursesListView.getItemAtPosition(position);
+                Intent intent = new Intent(Home.this, CourseDetailActivity.class);
+                intent.putExtra(COURSE_DETAIL_EXTRA, course.getId());
+                startActivity(intent);
+            }
+        });
 
     }
 }

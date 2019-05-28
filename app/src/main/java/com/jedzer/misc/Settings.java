@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.jedzer.learnero.LearneroApp;
 
 
 public class Settings {
@@ -15,7 +14,7 @@ public class Settings {
 
     private static SharedPreferences getSharedPref()
     {
-        Context context = LearneroApp.getAppContext();
+        Context context = com.orm.SugarApp.getSugarContext();
         return context.getSharedPreferences(MAIN_PREFERENCES, Context.MODE_PRIVATE);
     }
 
@@ -40,4 +39,13 @@ public class Settings {
         SharedPreferences sPref = getSharedPref();
         return sPref.getBoolean(IS_LOGGED_IN, false);
     }
+
+    public static void setLogOut()
+    {
+        SharedPreferences sPref = getSharedPref();
+        SharedPreferences.Editor editor = sPref.edit();
+        editor.putBoolean(IS_LOGGED_IN, false);
+        editor.apply();
+    }
+
 }
